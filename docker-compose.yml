@@ -6,6 +6,7 @@ services:
     
     command:
       - "--api.dashboard=true"
+      - "--api.insecure=true"     
       - "--entrypoints.web.address=:80"
       - "--entrypoints.websecure.address=:443"
       - "--providers.docker=true"
@@ -14,6 +15,7 @@ services:
       - "--certificatesresolvers.le.acme.email=huzaifairfan2001@gmail.com"
       - "--certificatesresolvers.le.acme.storage=/letsencrypt/acme.json"
     ports:
+      - "8080:8080"
       - "80:80"
       - "443:443"
     volumes:
