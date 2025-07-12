@@ -4,6 +4,8 @@ services:
     image: traefik:v3.4
     restart: unless-stopped 
     
+
+
     command:
       - "--configFile=/etc/traefik/traefik.yml"
       
@@ -17,11 +19,15 @@ services:
 
     volumes:
       - "./traefik.yml:/etc/traefik/traefik.yml:ro"
+      - "./dynamic_conf.yml:/etc/traefik/dynamic_conf.yml:ro"
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
       - "./letsencrypt:/letsencrypt"
       - "./logs:/logs"
       - "./certs:/certs"
 
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+      
     networks:
       - web
 

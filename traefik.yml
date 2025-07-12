@@ -23,9 +23,20 @@ entryPoints:
     address: ":443"
 
 
+# TLS configuration
+tls:
+  stores:
+    default:
+      # Default cert for local domains (fallback)
+      defaultCertificate:
+        certFile: "/certs/local.crt"  # mkcert or self-signed
+        keyFile: "/certs/local.key"
 
 providers:
   docker: {}
+  file:
+    filename: "/etc/traefik/dynamic_conf.yml"
+    watch: true
 
 certificatesResolvers:
   le:
