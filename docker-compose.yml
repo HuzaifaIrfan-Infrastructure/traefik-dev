@@ -7,22 +7,35 @@ services:
     command:
       - "--api.dashboard=true"
       - "--api.insecure=true"     
+
       - "--entrypoints.web.address=:80"
       - "--entrypoints.websecure.address=:443"
+      - "--providers.docker=true"
+
       - "--entrypoints.web.http.redirections.entrypoint.to=websecure"
       - "--entrypoints.web.http.redirections.entrypoint.scheme=https"
-      - "--providers.docker=true"
+      
       - "--certificatesresolvers.le.acme.httpchallenge=true"
       - "--certificatesresolvers.le.acme.httpchallenge.entrypoint=web"
       - "--certificatesresolvers.le.acme.email=huzaifairfan2001@gmail.com"
       - "--certificatesresolvers.le.acme.storage=/letsencrypt/acme.json"
+
+      - "--log.level=DEBUG"                      # DEBUG, INFO, WARN, ERROR
+      - "--accesslog=true"
+      - "--accesslog.format=common"              # or json
+      - "--accesslog.filepath=/logs/access.log"
+      - "--log.filepath=/logs/traefik.log"
+      
     ports:
       - "8080:8080"
       - "80:80"
       - "443:443"
+
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
       - "./letsencrypt:/letsencrypt"
+      - "./logs:/logs"
+
     networks:
       - web
 
