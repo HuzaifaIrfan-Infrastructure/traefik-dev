@@ -1,6 +1,6 @@
 services:
-  traefik-dev:
-    container_name: traefik-dev
+  traefik-ai-gateway:
+    container_name: traefik-ai-gateway
     image: traefik:v3.4
     restart: unless-stopped 
     

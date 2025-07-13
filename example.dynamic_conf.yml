@@ -1,0 +1,20 @@
+http:
+  routers:
+    my-router:
+      rule: "Host(`cattr.home`)"
+      service: my-service
+      entryPoints:
+        - web
+  #     middlewares:
+  #       - my-redirect
+
+  # middlewares:
+  #   my-redirect:
+  #     redirectScheme:
+  #       scheme: https
+
+  services:
+    my-service:
+      loadBalancer:
+        servers:
+          - url: "http://app:80/"
