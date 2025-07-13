@@ -214,3 +214,5 @@ certs/
 *.key
 *.pem
 
+dynamic_conf.yml
+traefik.yml
