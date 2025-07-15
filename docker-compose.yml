@@ -1,6 +1,6 @@
 services:
-  traefik-ai-gateway:
-    container_name: traefik-ai-gateway
+  traefik-reverse-proxy:
+    container_name: traefik-reverse-proxy
     image: traefik:v3.4
     restart: unless-stopped 
     
